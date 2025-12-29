@@ -68,13 +68,16 @@ const state = {
 const elements = {
     navigationMenu: document.querySelector('.navigation__menu'),
     navigationBurger: document.querySelector('.navigation__burger'),
+    navigationDialog: document.querySelector('.navigation__dialog'),
     countriesList: document.querySelector('.countries__list'),
     expandBtn: document.getElementById('expandBtn'),
     restaurantForm: document.getElementById('restaurantForm'),
+    year: document.querySelector('.year')
 };
 
 function documentInit() {
     renderCountries();
+    renderYear();
     setupEventListeners();
     formInit();
 }
@@ -86,7 +89,8 @@ function windowSetup() {
 
 function setupEventListeners() {
     elements.expandBtn?.addEventListener('click', handleExpand);
-    elements.restaurantForm?.addEventListener('submit', handleSubmit)
+    elements.restaurantForm?.addEventListener('submit', handleSubmit);
+    elements.navigationBurger?.addEventListener('click', handleBurger);
 }
 
 function setupMenu() {
@@ -97,6 +101,7 @@ function setupMenu() {
         elements.navigationBurger.classList.remove('hidden');
     }
     else {
+        elements.navigationDialog.removeAttribute("open")
         elements.navigationMenu.classList.remove('hidden');
         elements.navigationBurger.classList.add('hidden');
     }
@@ -114,6 +119,10 @@ function setupCountries() {
         state.itemsPerLoad = 30;
         renderCountries()
     }
+}
+
+function handleBurger() {
+    elements.navigationDialog?.setAttribute("open", "true")
 }
 
 function handleExpand() {
@@ -144,6 +153,10 @@ function createCountryElement(country) {
     `;
 
     return p;
+}
+
+function renderYear() {
+    elements.year.textContent = `© ${new Date().getFullYear().toString()}`
 }
 
 const formElements = {

@@ -11,7 +11,7 @@
 
 <body>
 	<nav class="navigation">
-		<a class="navigation__header" href="/">
+		<a class="navigation__header" href="https://arsl11.github.io/restaurant/">
 			<img src="./img/logo.svg" />
 			<p class="navigation__title">Best Restaurant <br /> Near Me</p>
 		</a>
@@ -29,6 +29,19 @@
 		<div role="link" class="navigation__burger hidden">
 			<img src="./img/burger.svg" />
 		</div>
+		<dialog id="navigationDialog" class="navigation__dialog" closedby="any">
+			<ul class="navigation__menu">
+				<li class="navigation__link">
+					<a href="#countries">Countries</a>
+				</li>
+				<li class="navigation__link">
+					<a href="#partners">Partners</a>
+				</li>
+				<li class="navigation__link">
+					<a href="#map">Map</a>
+				</li>
+			</ul>
+		</dialog>
 	</nav>
 
 	<div class="container">
@@ -162,11 +175,11 @@
 
 	<footer class="footer">
 		<div class="footer__content">
-			<a class="footer__header" href="/">
+			<a class="footer__header" href="https://arsl11.github.io/restaurant/">
 				<img src="./img/logo.svg" />
 				<p class="footer__title">Best Restaurant <br /> Near Me</p>
 			</a>
-			<p>© 2022</p>
+			<p class="year"></p>
 		</div>
 	</footer>
 	</div>

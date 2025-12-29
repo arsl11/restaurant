@@ -134,6 +134,13 @@ fieldset {
     margin: 0 auto;
 }
 
+.navigation {
+    position: sticky;
+    top: 0;
+    background-color: white;
+    z-index: 10;
+}
+
 .navigation, .footer__content {
     display: flex;
     justify-content: space-between;
@@ -164,8 +171,9 @@ fieldset {
 
 .navigation__dialog {
     position: absolute;
-    top: 5rem;
-    margin: auto 5rem auto auto;
+    top: 40px;
+    margin-left: auto;
+    margin-right: 10px;
 }
 
 .navigation__dialog .navigation__menu {
@@ -344,6 +352,10 @@ fieldset {
 
 .footer__content {
     margin-bottom: 0;
+}
+
+.year {
+    white-space: nowrap;
 }
 
 @media (max-width: 768px) {

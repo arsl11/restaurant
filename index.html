@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Best Restaurant Near Me</title>
+	<link rel="stylesheet" href="styles.css">
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/lipis/flag-icons@7.3.2/css/flag-icons.min.css" />
+</head>
+
+<body>
+	<nav class="navigation">
+		<a class="navigation__header" href="/">
+			<img src="./img/logo.svg" />
+			<p class="navigation__title">Best Restaurant <br /> Near Me</p>
+		</a>
+		<ul class="navigation__menu">
+			<li class="navigation__link">
+				<a href="#countries">Countries</a>
+			</li>
+			<li class="navigation__link">
+				<a href="#partners">Partners</a>
+			</li>
+			<li class="navigation__link">
+				<a href="#map">Map</a>
+			</li>
+		</ul>
+		<div role="link" class="navigation__burger hidden">
+			<img src="./img/burger.svg" />
+		</div>
+	</nav>
+
+	<div class="container">
+		<header class="header">
+			<h1>Best Restaurant Near Me Search</h1>
+			<p class="subtitle">Discover the top restaurants around the globe for an unforgettable dining experience</p>
+		</header>
+
+	
+		<main class="main-content">
+			<div class="search-section">
+				<input id="city" placeholder="City" class="contained find" />
+				<hr />
+				<select id="category" class="contained">
+					<option>All food</option>
+					<option>Asian food</option>
+					<option>European food</option>
+					<option>Mediterranean food</option>
+					<option>Latin American food</option>
+					<option>Middle Eastern food</option>
+				</select>
+				<button class="primary">SEARCH</button>
+			</div>
+
+			<div class="map"></div>
+
+			<section class="categories">
+				<div class="categories__container">
+					<div class="category__card">
+						<img src="./img/asian.svg" class="category__image">
+						<p>Asian food</p>
+						<p>8 481</p>
+					</div>
+
+					<div class="category__card">
+						<img src="./img/european.svg" class="category__image">
+						<p>European food</p>
+						<p>2 481</p>
+					</div>
+
+					<div class="category__card">
+						<img src="./img/mediterranean.svg" class="category__image">
+						<p>Mediterranean food</p>
+						<p>1 834</p>
+					</div>
+
+					<div class="category__card">
+						<img src="./img/latin.svg" class="category__image">
+						<p>Latin American food</p>
+						<p>1 481</p>
+					</div>
+
+					<div class="category__card">
+						<img src="./img/middle.svg" class="category__image">
+						<p>Middle Eastern food</p>
+						<p>1 481</p>
+					</div>
+				</div>
+			</section>
+
+			<section class="restaurants-by-country">
+				<h2>Best Restaurant by Country</h2>
+				<div class="countries__container">
+					<div class="countries__list">
+						
+					</div>
+					<button id="expandBtn" class="icon">
+						<img src="./img/right.svg"/>
+						Expand
+					</button>
+				</div>
+			</section>
+
+			<section class="add-restaurant">
+				<h2>Add your restaurant</h2>
+				<form id="restaurantForm" novalidate>
+					<div class="form__container">
+						<div class="input__container">
+							<div class="input__group">
+								<input class="outlined" type="email" id="email" required>
+								<label for="email">Email</label>
+								<span class="helper__text" aria-live="polite"></span>
+							</div>
+							<div class="input__group">
+								<input class="outlined find" type="text" id="address" required>
+								<label for="address">Address</label>
+								<span class="helper__text" aria-live="polite"></span>
+							</div>
+							<div class="input__group">
+								<input class="outlined" type="text" id="restaurantName" required>
+								<label for="restaurantName">Name of Restaurant</label>
+								<span class="helper__text" aria-live="polite"></span>
+							</div>
+							<div class="input__group">
+								<textarea class="outlined" id="about" placeholder="About your place"
+									rows="3"></textarea>
+							</div>
+						</div>
+						<hr />
+						<fieldset>
+							<legend id="foodCategory"></legend>
+							<div class="fieldset__group">
+								<input id="asian" type="checkbox" />
+								<label for="asian">Asian food</label>
+							</div>
+							<div class="fieldset__group">
+								<input id="european" type="checkbox" checked />
+								<label for="european">European food</label>
+							</div>
+							<div class="fieldset__group">
+								<input id="mediterranean" type="checkbox" />
+								<label for="mediterranean">Mediterranean food</label>
+							</div>
+							<div class="fieldset__group">
+								<input id="latin" type="checkbox" />
+								<label for="latin">Latin American food</label>
+							</div>
+							<div class="fieldset__group">
+								<input id="middle" type="checkbox" />
+								<label for="middle">Middle Eastern food</label>
+							</div>
+						</fieldset>
+					</div>
+
+					<button type="submit" class="primary">ADD</button>
+				</form>
+			</section>
+		</main>
+	</div>
+
+
+	<footer class="footer">
+		<div class="footer__content">
+			<a class="footer__header" href="/">
+				<img src="./img/logo.svg" />
+				<p class="footer__title">Best Restaurant <br /> Near Me</p>
+			</a>
+			<p>© 2022</p>
+		</div>
+	</footer>
+	</div>
+
+	<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+	<!-- <script src="mouseTracker.jquery.js"></script> -->
+	<script src="script.js"></script>
+
+</body>
+
+</html>

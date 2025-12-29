@@ -1,0 +1,421 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'SF Pro Display-Bold', Helvetica;
+    line-height: 150%;
+    letter-spacing: 0;
+    font-weight: 700;
+    color: #181A27;
+}
+
+a {
+    color: inherit;
+    text-decoration: none;
+}
+
+button {
+    font-family: 'SF Pro Display-Bold', Helvetica;
+    border: none;
+    cursor: pointer;
+}
+
+button[class="primary"] {
+    background-color: #E88565;
+    color: white;
+    padding: 20px 24px;
+    line-height: 135%;
+    font-size: 18px;
+    width: 100%;
+}
+
+button[class="icon"] {
+    font-size: 16px;
+    line-height: 150%;
+    color: #181A27;
+    opacity: 50%;
+    font-weight: 700;
+    background: transparent;
+}
+
+button[class="icon"] img {
+    margin-bottom: -5px;
+}
+
+input:is(.find) {
+    background: url('./img/find.svg') center right 20px no-repeat
+}
+
+input:is(.contained), select:is(.contained) {
+    border: none;
+    background-color: #F6F6F6;
+    padding: 20px 16px;
+}
+
+input:is(.outlined), textarea:is(.outlined) {
+    border: none;
+    border-bottom: 1px solid #A5A5A5;
+}
+
+input:not([type="checkbox"]):focus-visible, select:focus-visible, textarea:focus-visible {
+    outline: none;
+}
+
+input:not([type="checkbox"]), select, textarea {
+    font-size: 18px;
+    font-family: 'SF Pro Display-Bold', Helvetica;
+    font-weight: 700;
+    padding: 20px 16px;
+    line-height: 135%;
+    width: 100%;
+}
+
+input[type="checkbox"]:checked,
+input[type="checkbox"]:not(:checked) {
+    appearance: none;
+    accent-color: white;
+    outline: 2px solid #D9D9D9;
+    border: none;
+    width: 18px;
+    height: 18px;
+    margin-right: 8px;
+    padding: 6px;
+    background-color: white;
+    margin-bottom: -2px;
+}
+
+input:checked + label {
+    color: #181A27;
+}
+
+input[type="checkbox"]:checked {
+    background: url('./img/agree.svg') center center no-repeat;
+}
+
+textarea {
+    resize: none;
+}
+
+select {
+    appearance: none;
+    -webkit-appearance: none;
+    background: url('./img/right.svg') center right 20px no-repeat;
+}
+
+hr {
+    border: none;
+    background-color: #A5A5A5;
+    opacity: 25%;
+}
+
+section h2 {
+    font-size: 36px;
+    margin-bottom: 40px;
+    line-height: 120%;
+    text-align: center;
+    font-weight: 700;
+}
+
+fieldset {
+    border: none;
+    color: #D9D9D9;
+    width: 100%;
+}
+
+.hidden {
+    display: none !important;
+}
+
+.container, .navigation, .footer__content {
+    max-width: 988px;
+    margin: 0 auto;
+}
+
+.navigation, .footer__content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 102px;
+    padding: 8px;
+}
+
+.navigation__header, .footer__header {
+    display: flex;
+    gap: 12px;
+    align-items: center;
+}
+
+.navigation__title, .footer__title {
+    font-family: 'Onest', sans-serif;
+    font-weight: 600;
+    font-size: 16px;
+    line-height: 14px;
+}
+
+.navigation__menu {
+    display: flex;
+    gap: 24px;
+    list-style-type: none;
+    align-items: center;
+}
+
+.navigation__dialog {
+    position: absolute;
+    top: 5rem;
+    margin: auto 5rem auto auto;
+}
+
+.navigation__dialog .navigation__menu {
+    flex-direction: column;
+}
+
+
+.header {
+    text-align: center;
+    margin-bottom: 100px;
+}
+
+.header h1 {
+    font-size: 64px;
+    margin-bottom: 16px;
+    line-height: 120%;
+    letter-spacing: -1px;
+}
+
+.subtitle {
+    font-size: 18px;
+    line-height: 135%;
+    opacity: 50%;
+}
+
+.input__group input {
+    appearance: none;
+}
+
+.input__group input.invalid {
+    color: #FF0000;
+}
+
+.helper__text {
+    font-weight: 500;
+    font-size: 12px;
+    line-height: 120%;
+}
+
+.active {
+    width: 100%;
+    color: #FF0000;
+    padding: 8px 16px;
+}
+
+.input__group input:focus ~ label,
+.input__group input:not(:focus).valid ~ label,
+.input__group input:not(:focus).invalid ~ label {
+  top: 8px;
+  left: 16px;
+  font-size: 12px;
+  line-height: 135%;
+  opacity: 1;
+}
+
+.input__group label {
+    position: absolute;
+    color: #575757;
+    pointer-events: none;
+    left: 16px;
+    top: 16px;
+    line-height: 135%;
+}
+
+.input__group {
+    position: relative
+}
+
+.search-section {
+    display: flex;
+    align-items: flex-start;
+}
+
+.search-section input, .search-section select{
+    flex: 1
+}
+
+.search-section button {
+    flex: 0
+}
+
+.search-section hr {
+    width: 1px;
+    height: 32px;
+    align-self: center;
+}
+
+.main-content {
+    display: flex;
+    flex-direction: column;
+    gap: 100px;
+}
+
+.map {
+    height: 329px;
+    background: url('./img/map.svg');
+}
+
+.categories__container {
+    display: flex;
+    flex-direction: row;
+    column-gap: 16px;
+    row-gap: 24px;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+}
+
+.category__card {
+    background: white;
+    padding: 0 28px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+    width: 184.8px;
+}
+
+.category__image {
+    width: 80px;
+    height: 80px;
+}
+
+.category__card p:nth-child(2) {
+    font-size: 14px;
+    line-height: 130%;
+    white-space: nowrap;
+}
+
+.category__card p:last-child {
+    font-size: 20px;
+    line-height: 120%;
+}
+
+.countries__container {
+    display: flex;
+    flex-direction: column;
+    background-color: #181A270D;
+    padding: 32px;
+}
+
+.countries__container button {
+    width: fit-content;
+    margin: 0 auto;
+}
+
+.countries__list {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 10px;
+    margin-bottom: 24px;
+}
+
+#restaurantForm hr {
+    width: 1px;
+    margin: 2% 16px;
+}
+
+.form__container {
+    display: flex;
+}
+
+.input__container {
+    width: 100%;
+}
+
+.fieldset__group {
+    margin-bottom: 24px;
+}
+
+.footer {
+    margin: 102px 0 0 0;
+    opacity: 50%;
+    background-color: #181A270D;
+}
+
+.footer__content {
+    margin-bottom: 0;
+}
+
+@media (max-width: 768px) {
+    .navigation {
+        margin-bottom: 24px;
+    }
+
+    .container {
+        padding: 0 16px;
+    }
+
+    .header {
+        margin-bottom: 24px;
+    }
+
+    .header h1 {
+        font-size: 36px;
+        margin-bottom: 8px;
+        letter-spacing: 0;
+    }
+    
+    .subtitle {
+        font-size: 16px;
+        line-height: 150%;
+        opacity: 50%;
+    }
+
+    .main-content {
+        gap: 60px;
+    }
+
+    .search-section {
+        flex-direction: column;
+    }
+
+    .search-section hr {
+        width: 90%;
+        justify-self: center;
+        height: 1px;
+    }
+
+    .map {
+        background: url('./img/small-map.svg') no-repeat;
+        background-size: cover;
+        height: 288px;
+    }
+
+    .category__card {
+        width: 136px;
+    }
+
+    section h2 {
+        font-size: 26px;
+        margin-bottom: 24px;
+    }
+
+    .countries__list {
+        margin-bottom: 16px;
+    }
+
+    .form__container {
+        flex-direction: column
+    }
+
+    #restaurantForm hr {
+        height: 1px;
+        width: 90%;
+        margin: 16px;
+        justify-self: center;
+    }
+
+    .footer {
+        margin-top: 40px;
+    }
+}

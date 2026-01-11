@@ -51,97 +51,125 @@ const countriesData = [
     },
 ];
 
-const multipliedCountries = [...countriesData, ...countriesData, ...countriesData, ...countriesData, ...countriesData, ...countriesData]
+// Global variables
+const multipliedCountries = [...countriesData, ...countriesData, ...countriesData, ...countriesData, ...countriesData, ...countriesData];
+const root = document.querySelector(':root');
+const style = getComputedStyle(root);
 
+
+// Utility functions
+const maxWidth = Number(style.getPropertyValue('--max-width').slice(0, -2));
 function detectDevice() {
     const width = window.innerWidth;
 
-    if (width <= 768) return 'mobile';
+    if (width <= maxWidth) return 'mobile';
     return 'desktop';
 }
 
-const state = {
-    visibleCount: 30,
-    itemsPerLoad: 30,
-};
-
-const elements = {
-    navigationMenu: document.querySelector('.navigation__menu'),
-    navigationBurger: document.querySelector('.navigation__burger'),
-    navigationDialog: document.querySelector('.navigation__dialog'),
-    countriesList: document.querySelector('.countries__list'),
-    expandBtn: document.getElementById('expandBtn'),
-    restaurantForm: document.getElementById('restaurantForm'),
-    year: document.querySelector('.year')
-};
-
-function documentInit() {
-    renderCountries();
-    renderYear();
-    setupEventListeners();
-    formInit();
+function setValidity(element) {
+    if (!!element.value) {
+        element.classList.add('valid');
+        element.classList.remove('invalid');
+    } else if (!element.value) {
+        element.classList.add('invalid');
+        element.classList.remove('valid');
+    }
 }
 
-function windowSetup() {
-    setupMenu()
-    setupCountries()
+function updateError(element) {
+    const error = document.querySelector(`#${element.id} ~ span.helper__text`);
+
+    if (!!element.value) {
+        error.textContent = '';
+        error.classList.remove('active');
+    } else if (!element.value) {
+        error.textContent = '* Required field';
+        error?.classList.add('active');
+    }
 }
 
-function setupEventListeners() {
-    elements.expandBtn?.addEventListener('click', handleExpand);
-    elements.restaurantForm?.addEventListener('submit', handleSubmit);
-    elements.navigationBurger?.addEventListener('click', handleBurger);
+function throttle(func, wait) {
+  let timeout;
+  return function() {
+    if (!timeout) {
+      timeout = setTimeout(() => {
+        func.apply(this, arguments);
+        timeout = null;
+      }, wait);
+    }
+  };
 }
 
-function setupMenu() {
-    const device = detectDevice()
+function setupDocument() {
+    setupYear();
+    setupRequiredInputs();
+}
+
+function setupWindow() {
+    setupBurgerMenu();
+    setupCountries();
+    setupSeparators();
+}
+
+
+// Setup burger menu
+const navigationDialog = document.getElementById('navigationDialog')
+
+function setupBurgerMenu() {
+    const device = detectDevice();
+    const navigationMenu = document.getElementById('navigationMenu')
+    const navigationBurger = document.getElementById('navigationBurger')
+
+    navigationBurger.addEventListener('click', handleBurger)
 
     if (device === 'mobile') {
-        elements.navigationMenu.classList.add('hidden');
-        elements.navigationBurger.classList.remove('hidden');
+        navigationMenu.classList.add('hidden');
+        navigationBurger.classList.remove('hidden');
     }
     else {
-        elements.navigationDialog.removeAttribute("open")
-        elements.navigationMenu.classList.remove('hidden');
-        elements.navigationBurger.classList.add('hidden');
-    }
-}
-
-function setupCountries() {
-    const device = detectDevice()
-
-    if (device === 'mobile') {
-        state.visibleCount = 10;
-        state.itemsPerLoad = 10;
-        renderCountries()
-    } else {
-        state.visibleCount = 30;
-        state.itemsPerLoad = 30;
-        renderCountries()
+        navigationDialog.removeAttribute("open");
+        navigationMenu.classList.remove('hidden');
+        navigationBurger.classList.add('hidden');
     }
 }
 
 function handleBurger() {
-    elements.navigationDialog?.setAttribute("open", "true")
+    navigationDialog.setAttribute("open", "true");
 }
 
-function handleExpand() {
-    state.visibleCount += state.itemsPerLoad;
-    renderCountries();
+
+// Setup countries
+const countriesState = {
+    visibleCountries: 30,
+    countriesPerLoad: 30,
+};
+function setupCountries() {
+    const device = detectDevice();
+
+    if (device === 'mobile') {
+        countriesState.visibleCountries = 10;
+        countriesState.countriesPerLoad = 10;
+        renderCountries();
+    } else {
+        countriesState.visibleCountries = 30;
+        countriesState.countriesPerLoad = 30;
+        renderCountries();
+    }
 }
 
 function renderCountries() {
-    const countriesToShow = multipliedCountries.slice(0, state.visibleCount);
+    const countriesList = document.getElementById('countriesList')
+    countriesList.innerHTML = '';
 
-    elements.countriesList.innerHTML = '';
-
+    const countriesToShow = multipliedCountries.slice(0, countriesState.visibleCountries);
     countriesToShow.forEach(country => {
         const countryElement = createCountryElement(country);
-        elements.countriesList.appendChild(countryElement);
+        countriesList.appendChild(countryElement);
     });
 
-    elements.expandBtn.style.display =
-        state.visibleCount < multipliedCountries.length ? 'block' : 'none';
+    const expandBtn = document.getElementById("expandBtn")
+    expandBtn.addEventListener('click', handleExpand)
+    expandBtn.style.display = countriesState.visibleCountries < multipliedCountries.length ? 'block' : 'none';
 }
 
 function createCountryElement(country) {
@@ -155,59 +183,53 @@ function createCountryElement(country) {
     return p;
 }
 
-function renderYear() {
-    elements.year.textContent = `© ${new Date().getFullYear().toString()}`
+function handleExpand() {
+    countriesState.visibleCountries += countriesState.countriesPerLoad;
+    renderCountries();
 }
 
-const formElements = {
-    email: document.getElementById('email'),
-    address: document.getElementById('address'),
-    restaurantName: document.getElementById('restaurantName'),
-}
 
-function formInit() {
-    Object.values(formElements).forEach(formElement => formElement.addEventListener("input", handleInput))
-}
+// Setup separators
+const verticalSeparators = document.querySelectorAll('hr:is(.vertical)');
+function setupSeparators() {
+    const device = detectDevice();
 
-function setValidity(element) {
-    if(!!element.value && !element.classList.contains('valid')) {
-        element.classList.add('valid')
-        element.classList.remove('invalid')
-    } else if (!element.value && !element.classList.contains('invalid')) {
-        element.classList.add('invalid')
-        element.classList.remove('valid')
+    if (device === 'mobile') {
+        verticalSeparators.forEach(verticalSeparator => {
+            verticalSeparator.classList.remove('vertical');
+            verticalSeparator.classList.add('horizontal');
+        });
+    } else {
+        verticalSeparators.forEach(verticalSeparator => {
+            verticalSeparator.classList.remove('horizontal');
+            verticalSeparator.classList.add('vertical');
+        });
     }
 }
 
-function updateError(element) {
-    const error = document.querySelector(`#${element.id} ~ span.helper__text`)
 
-    if(!!element.value) {
-        error.textContent = ''
-        error.classList.remove('active')
-    } else if (!element.value) {
-        error.textContent = '* Required field'
-        error?.classList.add('active')
-    }
+// Setup required inputs
+function setupRequiredInputs() {
+    const requiredInputs = document.querySelectorAll('[required]');
+    requiredInputs.forEach(requiredInput => {
+        requiredInput.addEventListener("input", () => handleInput(requiredInput));
+    });
 }
 
-function handleInput() {
-    Object.values(formElements).forEach(formElement => {
-        setValidity(formElement)
-        updateError(formElement)
-    })
+function handleInput(input) {
+    setValidity(input);
+    updateError(input);
 }
 
-function handleSubmit(event) {
-    event.preventDefault()
 
-    Object.values(formElements).forEach(formElement => {
-        setValidity(formElement)
-        updateError(formElement)
-    })
+// Setup year
+function setupYear() {
+    const year = document.getElementById('year')
+    year.textContent = `© ${new Date().getFullYear().toString()}`;
 }
 
-document.addEventListener('DOMContentLoaded', documentInit);
 
-window.addEventListener('load', windowSetup);
-window.addEventListener('resize', windowSetup);
+document.addEventListener('DOMContentLoaded', setupDocument);
+
+window.addEventListener('load', setupWindow);
+window.addEventListener('resize', throttle(setupWindow, 500));

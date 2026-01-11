@@ -15,7 +15,7 @@
 			<img src="./img/logo.svg" />
 			<p class="navigation__title">Best Restaurant <br /> Near Me</p>
 		</a>
-		<ul class="navigation__menu">
+		<ul id="navigationMenu" class="navigation__menu">
 			<li class="navigation__link">
 				<a href="#countries">Countries</a>
 			</li>
@@ -26,7 +26,7 @@
 				<a href="#map">Map</a>
 			</li>
 		</ul>
-		<div role="link" class="navigation__burger hidden">
+		<div id="navigationBurger" role="link" class="navigation__burger hidden">
 			<img src="./img/burger.svg" />
 		</div>
 		<dialog id="navigationDialog" class="navigation__dialog" closedby="any">
@@ -53,8 +53,14 @@
 	
 		<main class="main-content">
 			<div class="search-section">
-				<input id="city" placeholder="City" class="contained find" />
-				<hr />
+				<div class="input__group">
+					<input id="city" class="contained find" required/>
+					<label for="city">City</label>
+					<span class="helper__text" aria-live="polite"></span>
+				</div>
+
+				<hr class="vertical"/>
+
 				<select id="category" class="contained">
 					<option>All food</option>
 					<option>Asian food</option>
@@ -67,6 +73,8 @@
 			</div>
 
 			<div class="map"></div>
+
+			<div class="ad">AD</div>
 
 			<section class="categories">
 				<div class="categories__container">
@@ -105,7 +113,7 @@
 			<section class="restaurants-by-country">
 				<h2>Best Restaurant by Country</h2>
 				<div class="countries__container">
-					<div class="countries__list">
+					<div id="countriesList" class="countries__list">
 						
 					</div>
 					<button id="expandBtn" class="icon">
@@ -124,23 +132,37 @@
 								<input class="outlined" type="email" id="email" required>
 								<label for="email">Email</label>
 								<span class="helper__text" aria-live="polite"></span>
+								<span class="helper__text" aria-live></span>
 							</div>
+
+							<hr class="horizontal"/>
+
 							<div class="input__group">
 								<input class="outlined find" type="text" id="address" required>
 								<label for="address">Address</label>
 								<span class="helper__text" aria-live="polite"></span>
 							</div>
+
+							<hr class="horizontal"/>
+
 							<div class="input__group">
 								<input class="outlined" type="text" id="restaurantName" required>
 								<label for="restaurantName">Name of Restaurant</label>
 								<span class="helper__text" aria-live="polite"></span>
 							</div>
+
+							<hr class="horizontal"/>
+
 							<div class="input__group">
-								<textarea class="outlined" id="about" placeholder="About your place"
-									rows="3"></textarea>
+								<textarea class="outlined" id="about"
+									rows="3" required></textarea>
+								<label for="about">About your place</label>
+								<span class="helper__text" aria-live="polite"></span>
 							</div>
 						</div>
-						<hr />
+
+						<hr class="vertical"/>
+
 						<fieldset>
 							<legend id="foodCategory"></legend>
 							<div class="fieldset__group">
@@ -179,12 +201,12 @@
 				<img src="./img/logo.svg" />
 				<p class="footer__title">Best Restaurant <br /> Near Me</p>
 			</a>
-			<p class="year"></p>
+			<p id="year" class="year"></p>
 		</div>
 	</footer>
 	</div>
 
-	<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+	<script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
 	<!-- <script src="mouseTracker.jquery.js"></script> -->
 	<script src="script.js"></script>
 

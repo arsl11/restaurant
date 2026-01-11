@@ -1,3 +1,19 @@
+:root {
+    --font-family: 'SF Pro Display-Bold', Helvetica;
+    --primary: #E88565;
+    --error: #FF0000;
+    --dark: #181A27;
+    --grey: #575757;
+    --bg-color: rgba(24, 26, 39, 0.05);
+    --input-bg: #F6F6F6;
+    --separator-color: rgba(165, 165, 165, 0.25);
+    --checkbox-color: #D9D9D9;
+    --white: #FFFFFF;
+    --black: #000000;
+    --opacity: 50%;
+    --max-width: 768px;
+}
+
 * {
     margin: 0;
     padding: 0;
@@ -5,11 +21,11 @@
 }
 
 body {
-    font-family: 'SF Pro Display-Bold', Helvetica;
+    font-family: var(--font-family);
     line-height: 150%;
     letter-spacing: 0;
     font-weight: 700;
-    color: #181A27;
+    color: var(--dark);
 }
 
 a {
@@ -18,14 +34,14 @@ a {
 }
 
 button {
-    font-family: 'SF Pro Display-Bold', Helvetica;
+    font-family: var(--font-family);
     border: none;
     cursor: pointer;
 }
 
-button[class="primary"] {
-    background-color: #E88565;
-    color: white;
+button:is(.primary) {
+    background-color: var(--primary);
+    color: var(--white);
     padding: 20px 24px;
     line-height: 135%;
     font-size: 18px;
@@ -35,8 +51,8 @@ button[class="primary"] {
 button[class="icon"] {
     font-size: 16px;
     line-height: 150%;
-    color: #181A27;
-    opacity: 50%;
+    color: var(--dark);
+    opacity: var(--opacity);
     font-weight: 700;
     background: transparent;
 }
@@ -51,13 +67,12 @@ input:is(.find) {
 
 input:is(.contained), select:is(.contained) {
     border: none;
-    background-color: #F6F6F6;
+    background-color: var(--input-bg);
     padding: 20px 16px;
 }
 
 input:is(.outlined), textarea:is(.outlined) {
     border: none;
-    border-bottom: 1px solid #A5A5A5;
 }
 
 input:not([type="checkbox"]):focus-visible, select:focus-visible, textarea:focus-visible {
@@ -66,7 +81,7 @@ input:not([type="checkbox"]):focus-visible, select:focus-visible, textarea:focus
 
 input:not([type="checkbox"]), select, textarea {
     font-size: 18px;
-    font-family: 'SF Pro Display-Bold', Helvetica;
+    font-family: var(--font-family);
     font-weight: 700;
     padding: 20px 16px;
     line-height: 135%;
@@ -76,19 +91,17 @@ input:not([type="checkbox"]), select, textarea {
 input[type="checkbox"]:checked,
 input[type="checkbox"]:not(:checked) {
     appearance: none;
-    accent-color: white;
-    outline: 2px solid #D9D9D9;
+    outline: 2px solid var(--checkbox-color);
     border: none;
     width: 18px;
     height: 18px;
     margin-right: 8px;
     padding: 6px;
-    background-color: white;
     margin-bottom: -2px;
 }
 
-input:checked + label {
-    color: #181A27;
+input[type="checkbox"]:not(:checked) ~ label {
+    opacity: var(--opacity);
 }
 
 input[type="checkbox"]:checked {
@@ -101,14 +114,22 @@ textarea {
 
 select {
     appearance: none;
-    -webkit-appearance: none;
     background: url('./img/right.svg') center right 20px no-repeat;
 }
 
 hr {
     border: none;
-    background-color: #A5A5A5;
-    opacity: 25%;
+    background-color: var(--separator-color);
+}
+
+hr:is(.horizontal) {
+    height: 1px;
+    margin: 0 16px;
+}
+
+hr:is(.vertical) {
+    width: 1px;
+    margin: 16px 0;
 }
 
 section h2 {
@@ -121,7 +142,6 @@ section h2 {
 
 fieldset {
     border: none;
-    color: #D9D9D9;
     width: 100%;
 }
 
@@ -137,7 +157,7 @@ fieldset {
 .navigation {
     position: sticky;
     top: 0;
-    background-color: white;
+    background-color: var(--white);
     z-index: 10;
 }
 
@@ -204,7 +224,7 @@ fieldset {
 }
 
 .input__group input.invalid {
-    color: #FF0000;
+    color: var(--error);
 }
 
 .helper__text {
@@ -215,13 +235,14 @@ fieldset {
 
 .active {
     width: 100%;
-    color: #FF0000;
+    color: var(--error);
     padding: 8px 16px;
 }
 
 .input__group input:focus ~ label,
 .input__group input:not(:focus).valid ~ label,
-.input__group input:not(:focus).invalid ~ label {
+.input__group textarea:focus ~ label,
+.input__group textarea:not(:focus).valid ~ label {
   top: 8px;
   left: 16px;
   font-size: 12px;
@@ -229,9 +250,11 @@ fieldset {
   opacity: 1;
 }
 
-.input__group label {
+.input__group label,
+.input__group input:not(:focus).invalid ~ label,
+.input__group textarea:not(:focus).invalid ~ label {
     position: absolute;
-    color: #575757;
+    color: var(--grey);
     pointer-events: none;
     left: 16px;
     top: 16px;
@@ -239,7 +262,7 @@ fieldset {
 }
 
 .input__group {
-    position: relative
+    position: relative;
 }
 
 .search-section {
@@ -247,18 +270,16 @@ fieldset {
     align-items: flex-start;
 }
 
-.search-section input, .search-section select{
+.search-section hr {
+    height: 32px;
+}
+
+.search-section .input__group, .search-section select{
     flex: 1
 }
 
 .search-section button {
     flex: 0
-}
-
-.search-section hr {
-    width: 1px;
-    height: 32px;
-    align-self: center;
 }
 
 .main-content {
@@ -272,6 +293,14 @@ fieldset {
     background: url('./img/map.svg');
 }
 
+.ad {
+    text-align: center;
+    padding: 33px 0;
+    background-color: var(--primary);
+    min-width: 728px;
+    margin: 0 auto;
+}
+
 .categories__container {
     display: flex;
     flex-direction: row;
@@ -283,13 +312,12 @@ fieldset {
 }
 
 .category__card {
-    background: white;
     padding: 0 28px;
     display: flex;
     flex-direction: column;
     align-items: center;
     gap: 8px;
-    width: 184.8px;
+    width: 184px;
 }
 
 .category__image {
@@ -311,7 +339,7 @@ fieldset {
 .countries__container {
     display: flex;
     flex-direction: column;
-    background-color: #181A270D;
+    background: var(--bg-color);
     padding: 32px;
 }
 
@@ -327,13 +355,12 @@ fieldset {
     margin-bottom: 24px;
 }
 
-#restaurantForm hr {
-    width: 1px;
-    margin: 2% 16px;
-}
-
 .form__container {
     display: flex;
+}
+
+.form__container > hr {
+    margin: 16px;
 }
 
 .input__container {
@@ -346,8 +373,8 @@ fieldset {
 
 .footer {
     margin: 102px 0 0 0;
-    opacity: 50%;
-    background-color: #181A270D;
+    background-color: var(--bg-color);
+    opacity: var(--opacity);
 }
 
 .footer__content {
@@ -357,6 +384,7 @@ fieldset {
 .year {
     white-space: nowrap;
 }
+
 
 @media (max-width: 768px) {
     .navigation {
@@ -380,7 +408,6 @@ fieldset {
     .subtitle {
         font-size: 16px;
         line-height: 150%;
-        opacity: 50%;
     }
 
     .main-content {
@@ -389,11 +416,10 @@ fieldset {
 
     .search-section {
         flex-direction: column;
+        align-items: normal;
     }
 
     .search-section hr {
-        width: 90%;
-        justify-self: center;
         height: 1px;
     }
 
@@ -401,6 +427,11 @@ fieldset {
         background: url('./img/small-map.svg') no-repeat;
         background-size: cover;
         height: 288px;
+    }
+
+    .ad {
+        min-width: 320px;
+        margin: 0 -16px;
     }
 
     .category__card {
@@ -418,13 +449,6 @@ fieldset {
 
     .form__container {
         flex-direction: column
-    }
-
-    #restaurantForm hr {
-        height: 1px;
-        width: 90%;
-        margin: 16px;
-        justify-self: center;
     }
 
     .footer {

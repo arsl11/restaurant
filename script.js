@@ -175,9 +175,11 @@ function renderCountries() {
 function createCountryElement(country) {
     const p = document.createElement('p');
 
+    p.classList.add(country.short)
+
     p.innerHTML = `
-        <span class="fi fi-${country.short}">
-        </span> ${country.title} (${country.count} locations)
+        <span class="icon"></span> 
+        <span class="text">${country.title} (${country.count} locations)</span>
     `;
 
     return p;

@@ -355,6 +355,55 @@ fieldset {
     margin-bottom: 24px;
 }
 
+.icon {
+    width: 16px;
+    height: 16px;
+    float: left;
+    background: url('./img/flags-sprite.svg') no-repeat;
+    margin-top: 2.5px;
+    margin-right: 5px;
+}
+
+.us .icon {
+    background-position: -16px -32px;
+}
+
+.ca .icon {
+    background-position: 0 -32px;
+}
+
+.es .icon {
+    background-position: -48px -16px;
+}
+
+.pl .icon {
+    background-position: -32px -16px;
+}
+
+.sv .icon {
+    background-position: -16px -16px;
+}
+
+.au .icon {
+    background-position: 0 -16px;
+}
+
+.ch .icon {
+    background-position: -48px 0;
+}
+
+.hk .icon {
+    background-position: -32px 0;
+}
+
+.ro .icon {
+    background-position: -16px 0;
+}
+
+.at .icon {
+    background-position: 0 0px;
+}
+
 .form__container {
     display: flex;
 }

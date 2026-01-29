@@ -478,8 +478,11 @@ fieldset {
         height: 288px;
     }
 
-    .ad {
+    .navigation, .container, footer, .ad {
         min-width: 320px;
+    }
+
+    .ad {
         margin: 0 -16px;
     }
 
